@@ -1,0 +1,12 @@
+export const inr = (n?: number | null) => (n == null ? '–' : '₹' + Math.round(n).toLocaleString('en-IN'));
+export const date = (d?: string | Date | null) => (d ? new Date(d).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) : '–');
+export const short = (id: string) => id.slice(-8).toUpperCase();
+export const statusLabel: Record<string, string> = {
+  awaiting_approval: 'Awaiting approval', awaiting_payment: 'Awaiting payment', paid: 'Paid', failed: 'Failed', cancelled: 'Cancelled',
+  completed: 'Completed', rejected: 'Rejected', denied: 'Denied', pending: 'Pending', refunded: 'Refunded',
+};
+export const statusTone = (s: string) =>
+  ['paid', 'completed'].includes(s) ? 'bg-ok/10 text-ok'
+  : ['failed', 'rejected', 'denied'].includes(s) ? 'bg-bad/10 text-bad'
+  : ['cancelled', 'refunded'].includes(s) ? 'bg-muted/10 text-muted'
+  : 'bg-warn/10 text-warn';
